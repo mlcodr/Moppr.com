@@ -1,0 +1,5 @@
+[
+  { "id": "r1", "maidId": "1", "user": "Noah", "rating": 5, "text": "Super thorough and on time!", "createdAt": "2024-10-01" },
+  { "id": "r2", "maidId": "1", "user": "Ava", "rating": 5, "text": "Great cooking and very polite.", "createdAt": "2024-09-15" },
+  { "id": "r3", "maidId": "2", "user": "Olivia", "rating": 4, "text": "Nice work, could be faster.", "createdAt": "2024-08-20" }
+]

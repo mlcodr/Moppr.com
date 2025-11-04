@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-light: #F8FAFC; /* slate-50 */
+  --panel-light: #FFFFFF;
+  --text-light: #0F172A; /* slate-900 */
+
+  --bg-dark: #0B1220; /* rich navy */
+  --panel-dark: #0F172A; /* slate-900 */
+  --text-dark: #E5E7EB; /* gray-200 */
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  @apply antialiased text-slate-900 bg-[var(--bg-light)] dark:text-[var(--text-dark)] dark:bg-[var(--bg-dark)];
+}
+
+/* Utility: glass panels */
+.glass-light { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(12px); }
+.glass-dark { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(12px); }
+
+/* Brand gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #22D3EE 0%, #6366F1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

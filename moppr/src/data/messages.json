@@ -1,0 +1,22 @@
+[
+  {
+    "threadId": "t1",
+    "maidId": "1",
+    "userId": "demo",
+    "lastMessageAt": "2024-10-05T14:32:00Z",
+    "messages": [
+      { "id": "m1", "sender": "maid", "text": "Hi! Thanks for reaching out.", "createdAt": "2024-10-03T09:00:00Z" },
+      { "id": "m2", "sender": "user", "text": "Are you available this Saturday?", "createdAt": "2024-10-03T09:01:00Z" },
+      { "id": "m3", "sender": "maid", "text": "Yes, 10am works great.", "createdAt": "2024-10-03T09:05:00Z" }
+    ]
+  },
+  {
+    "threadId": "t2",
+    "maidId": "2",
+    "userId": "demo",
+    "lastMessageAt": "2024-09-28T18:15:00Z",
+    "messages": [
+      { "id": "m4", "sender": "maid", "text": "Reminder: booking tomorrow at 6pm.", "createdAt": "2024-09-27T18:15:00Z" }
+    ]
+  }
+]

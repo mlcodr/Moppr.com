@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1",
+    "name": "Aisha Khan",
+    "location": "Downtown",
+    "hourlyRate": 15,
+    "skills": ["cleaning", "cooking", "laundry"],
+    "ratingAvg": 4.8,
+    "ratingCount": 126
+  },
+  {
+    "id": "2",
+    "name": "Maria Santos",
+    "location": "Greenfield",
+    "hourlyRate": 18,
+    "skills": ["cleaning", "babysitting"],
+    "ratingAvg": 4.7,
+    "ratingCount": 89
+  },
+  {
+    "id": "3",
+    "name": "Priya Sharma",
+    "location": "Lakeside",
+    "hourlyRate": 16,
+    "skills": ["cooking", "deep cleaning", "grocery"],
+    "ratingAvg": 4.9,
+    "ratingCount": 203
+  }
+]

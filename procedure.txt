@@ -1,0 +1,209 @@
+Moppr — Modern Frontend-Only Prototype (No Backend)
+
+Goal
+- Build a highly polished, dynamic, and modern UI prototype for a maid finder platform (Moppr) with: Login/Signup (mock), Search and Filters, Skills, Ratings/Reviews, Booking (dates/times), Confirmation/Cancellation, and In-app Messaging (mock). No server — pure frontend with mock data and local persistence.
+
+Tech Stack
+1) Framework: React + Vite (fast dev, modern toolchain)
+2) Styling: Tailwind CSS + CSS variables for theming
+3) Animations: Framer Motion (micro-interactions, page transitions)
+4) Icons: Lucide or Heroicons
+5) State: React Context + Zustand (lightweight and simple), localStorage for persistence
+6) Routing: React Router
+7) Date/Time: React Day Picker or React Date Range + native time inputs
+8) Mock Data: JSON files; optional MirageJS or MSW to simulate API calls
+
+Information Architecture (Pages & Key Screens)
+- Landing/Home: Hero, value props, animated search bar, featured maids, testimonials
+- Auth: Login/Signup modals (mock); Google/Email buttons; validates inputs only
+- Browse/Search: Grid of maid cards, filters (location, price, skills, availability, rating), optional static map image
+- Maid Profile: Large hero, photos carousel, skills chips, rating summary, reviews list, CTA to "Request Service"
+- Booking Flow: Drawer/Modal with date picker, time slots, price estimate, confirmation; show cancellation rules
+- Messages: Two-pane UI (thread list + chat), typing indicator, send message (stored locally)
+- Account (optional for prototype): Bookings list, messages, saved maids, profile settings
+
+Design System
+- Color: Vibrant accent gradient (teal -> indigo) with dark mode toggle
+- Typography: Inter or Satoshi; generous white space, large headings
+- Components: Buttons (primary/ghost), Inputs, Selects, Chips, Toggles, Cards, Modals/Drawers, Tabs, Toasts, Avatars, Rating Stars, Empty States
+- Spacing & Elevation: Soft shadows, glassmorphism touches for panels, hover/press feedback
+
+Core Components (Reusable)
+- AppShell (top nav, sidebar on desktop, footer)
+- HeroSearch (animated, expands to advanced filters)
+- MaidCard (image, name, skills chips, rating, price, availability badge)
+- FilterBar (skills multi-select, rating slider, price range, availability)
+- SkillsChips (selectable, animated)
+- RatingStars (read/write for mock review submission)
+- DateTimePicker (date + time; validation on conflicts)
+- BookingDrawer (steps: details -> times -> confirm)
+- ReviewList and ReviewComposer (mock submit)
+- Chat (thread list + message bubble list + composer; local echo)
+- Modal/Drawer/Toast primitives
+
+Data Model (Mock)
+- maid: { id, name, avatar, location, hourlyRate, skills[], ratingAvg, ratingCount, availability[], bio, gallery[] }
+- review: { id, maidId, user, rating, text, createdAt }
+- booking: { id, maidId, userId, date, startTime, endTime, status: requested|confirmed|cancelled }
+- message: { id, threadId, senderId, text, createdAt, read }
+- thread: { id, maidId, userId, lastMessageAt }
+
+State & Persistence
+- Global store (Zustand) for user session (mock), filters, booking draft, messages
+- Persist slices to localStorage: user, bookings, messages, favorites
+- Simulate latency with small timeouts to make UI feel realistic
+
+Feature Walkthrough
+1) Login/Signup (Mock)
+   - Open modal from navbar
+   - Validate fields; on success, store mock user in localStorage
+   - Show toasts and animated success checkmark
+
+2) Search & Filter
+   - HeroSearch on Home; deep link to /browse with query params
+   - FilterBar collapsible on mobile; sticky on desktop
+   - Animated chips for skills; rating slider; price range; availability toggle
+   - Show count of results; skeleton loaders while filtering
+
+3) Skills
+   - Display skills as colored chips with tooltips
+   - Multi-select filter; highlight on hover; filter logic runs client-side
+
+4) Ratings & Reviews
+   - MaidCard shows ratingAvg + count
+   - Profile shows distribution bars; ReviewList with infinite scroll (mock)
+   - ReviewComposer allows adding a review (adds to local state)
+
+5) Request Service
+   - BookingDrawer from Profile and Card CTA
+   - Select date (calendar) and time window; validate against maid availability
+   - Price estimator: duration x hourlyRate; show breakdown
+
+6) Confirmation & Cancellation
+   - Confirmation screen with confetti animation; booking added to local store
+   - Bookings tab with status chips; allow cancel -> status updates, show toast
+
+7) In-App Messaging (Mock)
+   - Messages page: thread list left, conversation right
+   - New message animates in; typing indicator; unread badge logic in store
+
+Delight & Motion
+- Page transitions and shared element transitions (Framer Motion)
+- Micro-interactions: button taps, filter chip toggles, card hover tilt
+- Skeletons for loading, empty states with illustrations
+- Dark mode with smooth theme transition
+
+Accessibility & Quality
+- Keyboard navigable modals/drawers; focus traps
+- ARIA labels for interactive components
+- Color contrast checked; prefers-reduced-motion support
+- Responsive from 360px -> 1440px+; test in Chrome/Edge and mobile emulation
+
+Routing Structure
+- /
+- /browse?query=&skills=&priceMin=&priceMax=&rating=&availability=
+- /maid/:id
+- /messages
+- /account/bookings (optional)
+
+Project Structure
+- src/
+  - main.tsx, app.css, tailwind.css
+  - routes/ (Home.tsx, Browse.tsx, Profile.tsx, Messages.tsx)
+  - components/ (global primitives + feature components)
+  - store/ (userStore.ts, bookingStore.ts, messagesStore.ts, filtersStore.ts)
+  - data/ (maids.json, reviews.json, availability.json)
+  - utils/ (formatters, date utils, storage)
+  - assets/ (logos, illustrations)
+
+Build Steps (You can follow or I can implement)
+1) Initialize: Vite + React + TS; add Tailwind, Framer Motion, React Router, Zustand
+2) Set up Tailwind theme, fonts, color variables, dark mode
+3) Build AppShell and navigation with auth modal
+4) Implement Home with HeroSearch and featured maids
+5) Create Browse page: FilterBar + MaidGrid + skeletons
+6) Create Profile page: gallery, skills, reviews, BookingDrawer
+7) Implement booking store, validation, price estimator
+8) Implement Messages with local threads and bubbles
+9) Add toasts, empty states, animations, and polish
+10) QA on responsiveness, accessibility, and local persistence
+
+What You Will Get
+- A fully navigable, visually compelling UI prototype demonstrating all requested features
+- Clickable flows for search, profile viewing, booking, confirmation/cancellation, and messaging
+- No backend required; all interactions simulated client-side
+
+Optional Enhancements (if time permits)
+- Map integration with leaflet (mock data)
+- Onboarding checklist and saved searches
+- Shareable maid profiles with generated Open Graph images
+
+Run Locally (once implemented)
+- npm install
+- npm run dev
+- Open http://localhost:5173
+
+Timeline (estimate once we start)
+- Day 1: Setup, AppShell, Home, theme
+- Day 2: Browse + filters, cards, mock data
+- Day 3: Profile, booking flow, reviews
+- Day 4: Messaging, polish, a11y, QA
+
+Success Criteria
+- Smooth, modern, and delightful experience with clear flows
+- All core features interactively demo-able without a backend
+- Clean, modular code ready for future API integration
+
+Repository Structure & Hosting (GitHub-ready)
+- Root files
+  - README.md (project overview + run/deploy guide)
+  - procedure.txt (this plan)
+  - package.json (scripts: dev, build, preview)
+  - vite.config.ts
+  - tailwind.config.ts, postcss.config.js
+  - index.html (Vite entry)
+  - .gitignore (node_modules, dist)
+  - .nvmrc (optional Node LTS version)
+  - public/ (static assets)
+- src/
+  - main.tsx, App.tsx
+  - routes/, components/, store/, data/, utils/, assets/
+
+.gitignore (minimum)
+- node_modules/
+- dist/
+- .DS_Store
+- *.log
+
+Git & GitHub
+1) git init
+2) git add . && git commit -m "chore: scaffold Moppr UI"
+3) Create a new GitHub repo and set remote:
+   - git remote add origin https://github.com/<you>/moppr.git
+   - git branch -M main
+   - git push -u origin main
+
+Hosting Options
+- GitHub Pages (recommended for static Vite)
+  - In vite.config.ts set base: "/moppr/" (repo name)
+  - npm run build -> outputs to dist
+  - Push to main; enable Pages (Deploy from /docs or use gh-pages action)
+  - Or use gh-pages package:
+    - npm i -D gh-pages
+    - Add scripts: "predeploy": "npm run build", "deploy": "gh-pages -d dist"
+    - npm run deploy
+
+- Vercel/Netlify (easiest)
+  - Import GitHub repo
+  - Framework preset: Vite
+  - Build command: npm run build
+  - Output directory: dist
+  - Auto previews on PRs; custom domain support
+
+Environment Notes
+- No .env required (frontend-only). If adding keys later, use Vite env (VITE_*) and never commit secrets.
+
+Naming & Conventions
+- Use kebab-case for files, PascalCase for React components
+- Co-locate component-specific styles
+- Keep mock data in src/data and images in public/assets or src/assets
